@@ -37,9 +37,42 @@ Use `.collect(), .take(5), .toPandas()` etc to evaluate and pull results to loca
     </tr>
     <tr>
         <td>df[['a', 'b', 'c']].set_index(['a', 'b'])['c'].sort_index().unstack(['b']).fillna(method='ffill')</td>
+        <td>see cube and window maybe</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>df.head(n=10)</td>
+        <td>df.head(n=10)</td>
+        <td></td>
+    </tr>
+        <td>df.sample(n=10)</td>
+        <td>df.sample() # not exactly same</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>df['a'].diff()</td>
         <td></td>
         <td></td>
     </tr>
+    <tr>
+        <td>
+            df = df.sort(['id', 'date']);
+            df['dt'] = df['date'].diff();
+            df['dt'][df['id'] != df['id'].shift()] = np.nan # maybe
+        </td>
+        <td></td>
+        <td>Calculate time diffs of sorted date within groups. See http://stackoverflow.com/questions/38156367/date-difference-between-consecutive-rows-pyspark-dataframe</td>
+    </tr>
+    <tr>
+        <td>df['a'].min()</td>
+        <td>df.select([F.min('a')])</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>df['hash'] = df[['a', 'b']].apply(lambda x: hash(x)) # not really </td>
+        <td>df.withColumn('hash', F.hash('a', 'b'))</td>
+        <td></td>
+    </tr>>
 </table>
 
 # Misc
