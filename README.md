@@ -11,6 +11,7 @@ Use `.collect(), .take(5), .toPandas()` etc to evaluate and pull results to loca
         <td>
             df.select('a').distinct()
             df.select('a').distinct().rdd.map(lambda x: x['a'])
+	    df.agg(F.approx_count_distinct('a'))
         </td>
 	      <td></td>
     </tr>
