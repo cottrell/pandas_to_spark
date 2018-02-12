@@ -22,7 +22,7 @@ Use `.collect(), .take(5), .toPandas()` etc to evaluate and pull results to loca
     </tr>
     <tr>
         <td>df.groupby(['a', 'b'])['c'].first()</td>
-        <td>df.groupby(['a', 'b']).agg(F.first('c'))</td>
+        <td>df.groupby(['a', 'b']).agg(F.first('c').alias('c'))</td>
         <td></td>
     </tr>
     <tr>
