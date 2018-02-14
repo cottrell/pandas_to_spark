@@ -12,12 +12,17 @@ Use `.collect(), .take(5), .toPandas()` etc to evaluate and pull results to loca
             df.select('a').distinct()
             df.select('a').distinct().rdd.map(lambda x: x['a'])
 	    df.select('a').agg(F.approx_count_distinct('a'))
+	    df.select(F.countDistinct('a'))
+	    df.agg(*(F.countDistinct(c).alias(c) for c in df.columns))
         </td>
 	      <td></td>
     </tr>
     <tr>
         <td>df['a'].value_counts()</td>
-        <td>df.groupby('a').count()</td>
+        <td>
+	    df.groupby('a').count()
+	    df.cube('a').count() # gives you subtotals
+	</td>
         <td></td>
     </tr>
     <tr>
