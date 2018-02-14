@@ -78,7 +78,15 @@ Use `.collect(), .take(5), .toPandas()` etc to evaluate and pull results to loca
         <td>df['hash'] = df[['a', 'b']].apply(lambda x: hash(x)) # not really </td>
         <td>df.withColumn('hash', F.hash('a', 'b'))</td>
         <td></td>
-    </tr>>
+    </tr>
+    <tr>
+        <td>df.groupby('a')['c'].transform('mean')</td>
+        <td>
+	    means = df.groupBy("Category").mean("Values").alias("means")
+	    df.alias("df").join(means, col("df.Category") == col("means.Category"))
+	</td>
+        <td>https://stackoverflow.com/questions/34464577/pandas-style-transform-of-grouped-data-on-pyspark-dataframe</td>
+    </tr>
 </table>
 
 # Misc
