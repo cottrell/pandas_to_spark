@@ -62,8 +62,8 @@ Use `.collect(), .take(5), .toPandas()` etc to evaluate and pull results to loca
     </tr>
     <tr>
         <td>
-            df = df.sort(['id', 'date']);
-            df['dt'] = df['date'].diff();
+            df = df.sort(['id', 'date'])
+            df['dt'] = df['date'].diff()
             df['dt'][df['id'] != df['id'].shift()] = np.nan # maybe
         </td>
         <td></td>
@@ -82,8 +82,8 @@ Use `.collect(), .take(5), .toPandas()` etc to evaluate and pull results to loca
     <tr>
         <td>df.groupby('a')['c'].transform('mean')</td>
         <td>
-	    means = df.groupBy("Category").mean("Values").alias("means")
-	    df.alias("df").join(means, col("df.Category") == col("means.Category"))
+	    s = df.groupBy("a").mean("Values").alias("s")
+	    df.alias("df").join(s, col("df.a") == col("s.a"))
 	</td>
         <td>https://stackoverflow.com/questions/34464577/pandas-style-transform-of-grouped-data-on-pyspark-dataframe</td>
     </tr>
